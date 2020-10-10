@@ -32,3 +32,4 @@
   - [x] 动态顺序表：可以替换元素存储区，且不改变对象
   - [x] 后端插入和存储区扩充：在不断后端插入过程中需要不断更换存储区
   - [x] Python中列表的存储区扩充策略：Objects/listobject.c中list_resize函数，The growth pattern is:  0, 4, 8, 16, 25, 35, 46, 58, 72, 88, ...
+  new_allocated = (size_t)newsize + (newsize >> 3) + (newsize < 9 ? 3 : 6);
