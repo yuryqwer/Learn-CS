@@ -31,5 +31,4 @@
     - 分离式结构：表对象里只保存与整个表有关的信息（容量和元素个数），实际元素存放在另一个独立的元素存储区对象里，通过链接与基本表对象关联
   - [x] 动态顺序表：可以替换元素存储区，且不改变对象
   - [x] 后端插入和存储区扩充：在不断后端插入过程中需要不断更换存储区
-  - [x] Python中列表的存储区扩充策略：Objects/listobject.c中list_resize函数，The growth pattern is:  0, 4, 8, 16, 25, 35, 46, 58, 72, 88, ...
-  new_allocated = (size_t)newsize + (newsize >> 3) + (newsize < 9 ? 3 : 6);
+  - [x] Python中列表的存储区扩充策略：cpython项目的Objects/listobject.c中list_resize函数`new_allocated = (size_t)newsize + (newsize >> 3) + (newsize < 9 ? 3 : 6);`，可以算出在不断后端插入过程中分配的存储空间分别为`0, 4, 8, 16, 25, 35, 46, 58, 72, 88, ...`。代码中的`newsize >> 3`保证了每次扩容都和当时的存储区大小成比例关系，这样平摊下来每次操作的平均复杂度还是能达到$O(1)$，并且也没有双倍扩容那么浪费空间
